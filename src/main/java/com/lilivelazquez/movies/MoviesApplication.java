@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class MoviesApplication {
 
 	public static void main(String[] args) {SpringApplication.run(MoviesApplication.class, args); }
-
-	@GetMapping("/")
+	@GetMapping("/root") //http://localhost:8080/root
 	public String apiRoot() {
 		return "Hello Word!";
 	}
+
 }
