@@ -1,18 +1,28 @@
 package com.lilivelazquez.movies;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 
 @SpringBootApplication
-@RestController
 public class MoviesApplication {
 
-	public static void main(String[] args) {SpringApplication.run(MoviesApplication.class, args); }
-	@GetMapping("/root") //http://localhost:8080/root
-	public String apiRoot() {
-		return "Hello Word!";
+	public static void main(String[] args) throws Exception {
+		//SpringApplication.run(MoviesApplication.class, args);
+
+		OkHttpClient client = new OkHttpClient();
+
+		Request request = new Request.Builder()
+				.url("https://jsonplaceholder.typicode.com/posts/1")
+				.build();
+
+		Response response = client.newCall(request).execute();
+
+		System.out.println(response.body().string());
+
 	}
 
 }
